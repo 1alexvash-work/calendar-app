@@ -1,11 +1,11 @@
 import React from "react";
 
-import Hello from "@/components/Hello";
+import Holidays from "@/components/Holidays";
 
 const Home = () => (
-  <div>
-    <Hello />
-  </div>
+  <>
+    <Holidays />
+  </>
 );
 
 export default Home;
