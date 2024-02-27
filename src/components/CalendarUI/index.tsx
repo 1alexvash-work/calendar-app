@@ -1,6 +1,4 @@
-const Card = () => {
-  return <div className="p-4 m-4 shadow-md">Card</div>;
-};
+import DayCard from "./DayCard";
 
 const CalendarUI = () => {
   const daysOfWeek = [
@@ -26,8 +24,14 @@ const CalendarUI = () => {
   const currentYear = currentDate.getFullYear();
 
   return (
-    <div className="p-4 m-4 shadow-md">
-      <h1 className="text-xl font-bold mb-2">{`${currentMonth} ${currentYear}`}</h1>
+    <div className="p-4 m-4 shadow-md min-w-[960px]">
+      <div className="flex justify-between mb-4">
+        <h2 className="text-xl font-bold mb-2">{`${currentMonth} ${currentYear}`}</h2>
+        <div>
+          <button className="p-2 shadow-md mr-2">Previous month</button>
+          <button className="p-2 shadow-md">Next month</button>
+        </div>
+      </div>
 
       <div className="flex justify-between mb-4 gap-4">
         {daysOfWeek.map((day) => (
@@ -42,14 +46,7 @@ const CalendarUI = () => {
       <div className="grid grid-cols-7 gap-4">
         {Array.from({ length: daysInMonth }, (_, index) => index + 1).map(
           (day) => (
-            <div
-              key={day}
-              className={`p-4 shadow-md ${
-                day === currentDay ? "bg-blue-500 text-white" : ""
-              }`}
-            >
-              {day}
-            </div>
+            <DayCard day={day} currentDay={currentDay} key={day} />
           )
         )}
       </div>
