@@ -1,15 +1,7 @@
 import DayCard from "./DayCard";
+import DaysOfWeek from "./DaysOfWeek";
 
 const CalendarUI = () => {
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
   const currentDate = new Date();
   const currentDay = currentDate.getDate();
 
@@ -33,13 +25,7 @@ const CalendarUI = () => {
         </div>
       </div>
 
-      <div className="flex justify-between mb-4 gap-4">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="p-4 shadow-md flex-1">
-            {day}
-          </div>
-        ))}
-      </div>
+      <DaysOfWeek />
 
       <hr className="my-4" />
 
