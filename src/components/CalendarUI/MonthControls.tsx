@@ -1,5 +1,5 @@
 type Props = {
-  setCurrentDate: React.Dispatch<React.SetStateAction<Date>>;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
 };
 
 const months = {
@@ -7,9 +7,9 @@ const months = {
   previous: -1,
 };
 
-const MonthControls = ({ setCurrentDate }: Props) => {
+const MonthControls = ({ setSelectedDate }: Props) => {
   const handleMonthChange = (increment: number) => {
-    setCurrentDate((prevDate: Date) => {
+    setSelectedDate((prevDate: Date) => {
       return new Date(
         prevDate.getFullYear(),
         prevDate.getMonth() + increment,
