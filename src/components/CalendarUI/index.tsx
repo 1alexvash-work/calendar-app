@@ -1,8 +1,17 @@
+"use client";
+
+import { useState } from "react";
+
 import DayCard from "./DayCard";
 import DaysOfWeek from "./DaysOfWeek";
+import MonthControls from "./MonthControls";
+
+// TODOS
+// [] implement changing month via previous and next buttons
+// [] display current holiday if there's any
 
 const CalendarUI = () => {
-  const currentDate = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
   const currentDay = currentDate.getDate();
 
   const currentMonth = currentDate.toLocaleString("en-US", {
@@ -19,10 +28,7 @@ const CalendarUI = () => {
     <div className="p-4 m-4 shadow-md min-w-[960px]">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-bold mb-2">{`${currentMonth} ${currentYear}`}</h2>
-        <div>
-          <button className="p-2 shadow-md mr-2">Previous month</button>
-          <button className="p-2 shadow-md">Next month</button>
-        </div>
+        <MonthControls setCurrentDate={setCurrentDate} />
       </div>
 
       <DaysOfWeek />
