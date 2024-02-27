@@ -18,6 +18,11 @@ const CalendarUI = () => {
   const currentMonth = currentDate.toLocaleString("en-US", {
     month: "long",
   });
+  const daysInMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  ).getDate();
   const currentYear = currentDate.getFullYear();
 
   return (
@@ -35,16 +40,18 @@ const CalendarUI = () => {
       <hr className="my-4" />
 
       <div className="grid grid-cols-7 gap-4">
-        {Array.from({ length: 31 }, (_, index) => index + 1).map((day) => (
-          <div
-            key={day}
-            className={`p-4 shadow-md ${
-              day === currentDay ? "bg-blue-500 text-white" : ""
-            }`}
-          >
-            {day}
-          </div>
-        ))}
+        {Array.from({ length: daysInMonth }, (_, index) => index + 1).map(
+          (day) => (
+            <div
+              key={day}
+              className={`p-4 shadow-md ${
+                day === currentDay ? "bg-blue-500 text-white" : ""
+              }`}
+            >
+              {day}
+            </div>
+          )
+        )}
       </div>
     </div>
   );
