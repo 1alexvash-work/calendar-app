@@ -1,5 +1,6 @@
 import React from "react";
 
+import CalendarUI from "@/components/CalendarUI";
 import Counter from "@/components/Counter";
 import Holidays from "@/components/Holidays";
 
@@ -14,7 +15,7 @@ const Home = async () => {
         Monthly view
       </button>
       <hr />
-      Calendar UI
+      <CalendarUI />
       <Holidays />
       <Counter />
     </>
