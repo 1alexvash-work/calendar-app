@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 import { Holiday } from "@/app/page";
 
 type Props = {
@@ -7,20 +9,19 @@ type Props = {
 };
 
 const DayCard = ({ selectedDate, day, holidays }: Props) => {
-  const today = new Date();
+  const today = DateTime.local().toISODate();
+  const luxonDay = DateTime.fromObject({
+    year: selectedDate.getFullYear(),
+    month: selectedDate.getMonth() + 1,
+    day,
+  }).toISODate();
 
-  const isToday = () => {
-    return (
-      day === today.getDate() &&
-      selectedDate.getMonth() === today.getMonth() &&
-      selectedDate.getFullYear() === today.getFullYear()
-    );
-  };
+  const isToday = luxonDay === today;
 
   return (
     <div
       key={day}
-      className={`p-4 shadow-md ${isToday() ? "bg-blue-500 text-white" : ""}`}
+      className={`p-4 shadow-md ${isToday ? "bg-blue-500 text-white" : ""}`}
     >
       {day}
     </div>
