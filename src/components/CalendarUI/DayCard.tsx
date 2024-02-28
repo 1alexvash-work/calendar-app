@@ -1,9 +1,12 @@
+import { Holiday } from "@/app/page";
+
 type Props = {
   selectedDate: Date;
   day: number;
+  holidays: Holiday[];
 };
 
-const DayCard = ({ selectedDate, day }: Props) => {
+const DayCard = ({ selectedDate, day, holidays }: Props) => {
   const today = new Date();
 
   const isToday = () => {

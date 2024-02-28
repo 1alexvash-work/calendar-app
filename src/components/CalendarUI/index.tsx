@@ -2,15 +2,22 @@
 
 import { useState } from "react";
 
+import { Holiday } from "@/app/page";
+
 import DayCard from "./DayCard";
 import DaysOfWeek from "./DaysOfWeek";
 import MonthControls from "./MonthControls";
 
 // TODOS
-// [] implement changing month via previous and next buttons
 // [] display current holiday if there's any
+// [] ability to add task
+// [] task drag and drop
 
-const CalendarUI = () => {
+type Props = {
+  holidays: Holiday[];
+};
+
+const CalendarUI = ({ holidays }: Props) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const currentMonth = selectedDate.toLocaleString("en-US", {
@@ -37,7 +44,12 @@ const CalendarUI = () => {
       <div className="grid grid-cols-7 gap-4">
         {Array.from({ length: daysInMonth }, (_, index) => index + 1).map(
           (day) => (
-            <DayCard day={day} key={day} selectedDate={selectedDate} />
+            <DayCard
+              day={day}
+              key={day}
+              selectedDate={selectedDate}
+              holidays={holidays}
+            />
           )
         )}
       </div>
