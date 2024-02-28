@@ -17,6 +17,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
   }).toISODate();
 
   const isToday = luxonDay === today;
+  const hasHoliday = holidays.some((holiday) => holiday.date === luxonDay);
 
   return (
     <div
@@ -24,6 +25,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
       className={`p-4 shadow-md ${isToday ? "bg-blue-500 text-white" : ""}`}
     >
       {day}
+      {hasHoliday && <span> - Holiday!</span>}
     </div>
   );
 };

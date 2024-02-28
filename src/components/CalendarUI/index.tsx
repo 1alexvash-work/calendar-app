@@ -9,9 +9,9 @@ import DaysOfWeek from "./DaysOfWeek";
 import MonthControls from "./MonthControls";
 
 // TODOS
-// [] display current holiday if there's any
 // [] ability to add task
 // [] task drag and drop
+// [] fix a major bug, days do not correspond to the correct day of the week
 
 type Props = {
   holidays: Holiday[];
