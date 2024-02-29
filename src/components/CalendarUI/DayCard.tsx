@@ -42,8 +42,16 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
       {day}
       {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
 
-      <div>
-        <button onClick={onOpenModal}>Add Task</button>
+      <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
+        <button
+          className={`${
+            isToday ? "bg-red-500" : "bg-blue-500 text-white"
+          } text-white px-2 py-1 rounded"`}
+          onClick={onOpenModal}
+          title="Add Task"
+        >
+          +
+        </button>
       </div>
 
       <Modal open={open} onClose={onCloseModal} center>
