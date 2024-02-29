@@ -4,6 +4,7 @@ import Modal from "react-responsive-modal";
 import { toast } from "react-toastify";
 
 import { Holiday } from "@/app/page";
+import useModal from "@/hooks/useModal";
 
 type Props = {
   selectedDate: Date;
@@ -12,10 +13,7 @@ type Props = {
 };
 
 const DayCard = ({ selectedDate, day, holidays }: Props) => {
-  const [open, setOpen] = useState(false);
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
+  const { isOpen, open, close } = useModal();
 
   const [taskName, setTaskName] = useState("");
 
@@ -23,7 +21,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
 
   const save = () => {
     toast.success("Task saved successfully");
-    onCloseModal();
+    close();
   };
 
   const today = DateTime.local().toISODate();
@@ -51,14 +49,14 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
           className={`${
             isToday ? "bg-red-500" : "bg-blue-500 text-white"
           } text-white px-2 py-1 rounded`}
-          onClick={onOpenModal}
+          onClick={open}
           title="Add Task"
         >
           +
         </button>
       </div>
 
-      <Modal open={open} onClose={onCloseModal} center>
+      <Modal open={isOpen} onClose={open} center>
         <h3 className="text-xl font-bold mb-4">Task name</h3>
         <input
           className="border border-gray-300 rounded px-4 py-2 mb-4"
