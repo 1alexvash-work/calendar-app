@@ -9,9 +9,12 @@ import Counter from "@/components/Counter";
 
 const getUSHolidays = async () => {
   const calendarApiUrl = "https://date.nager.at/api/v3";
+
   const currentYear = new Date().getFullYear();
+  const country = "US";
+
   const result = await fetch(
-    `${calendarApiUrl}/PublicHolidays/${currentYear}/US`
+    `${calendarApiUrl}/PublicHolidays/${currentYear}/${country}`
   );
   const data = await result.json();
 

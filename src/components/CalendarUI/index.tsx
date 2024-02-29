@@ -1,5 +1,6 @@
 "use client";
 
+import { DateTime } from "luxon";
 import { useState } from "react";
 
 import { Holiday } from "@/app/page";
@@ -23,12 +24,18 @@ const CalendarUI = ({ holidays }: Props) => {
   const currentMonth = selectedDate.toLocaleString("en-US", {
     month: "long",
   });
+  const currentYear = selectedDate.getFullYear();
+
+  const selectedDateLuxon = DateTime.fromJSDate(selectedDate);
+  const gap = selectedDateLuxon.startOf("month").weekday - 1;
+  const columnOffset = Array.from({ length: gap }, (_, index) => (
+    <div key={index} />
+  ));
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth() + 1,
     0
   ).getDate();
-  const currentYear = selectedDate.getFullYear();
 
   return (
     <div className="p-4 m-4 shadow-md min-w-[960px]">
@@ -42,6 +49,7 @@ const CalendarUI = ({ holidays }: Props) => {
       <hr className="my-4" />
 
       <div className="grid grid-cols-7 gap-4">
+        {columnOffset}
         {Array.from({ length: daysInMonth }, (_, index) => index + 1).map(
           (day) => (
             <DayCard
