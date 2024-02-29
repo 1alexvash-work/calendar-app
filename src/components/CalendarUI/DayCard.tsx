@@ -19,10 +19,11 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
 
   const [taskName, setTaskName] = useState("");
 
-  const save = (event) => {
-    console.log("event:", event);
-    console.log("save");
-    toast("Wow so easy!");
+  const isSaveButtonDisabled = taskName.trim() === "";
+
+  const save = () => {
+    toast.success("Task saved successfully");
+    onCloseModal();
   };
 
   const today = DateTime.local().toISODate();
@@ -49,7 +50,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
         <button
           className={`${
             isToday ? "bg-red-500" : "bg-blue-500 text-white"
-          } text-white px-2 py-1 rounded"`}
+          } text-white px-2 py-1 rounded`}
           onClick={onOpenModal}
           title="Add Task"
         >
@@ -66,8 +67,11 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
           onChange={(event) => setTaskName(event.target.value)}
         />
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className={`bg-blue-500 text-white px-4 py-2 rounded ${
+            isSaveButtonDisabled ? "cursor-not-allowed bg-gray-400" : ""
+          }`}
           onClick={save}
+          disabled={isSaveButtonDisabled}
         >
           Save
         </button>
