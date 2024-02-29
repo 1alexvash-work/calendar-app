@@ -1,3 +1,5 @@
+import "react-responsive-modal/styles.css";
+
 import React from "react";
 
 import CalendarUI from "@/components/CalendarUI";

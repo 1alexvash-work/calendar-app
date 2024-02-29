@@ -1,4 +1,6 @@
 import { DateTime } from "luxon";
+import { useState } from "react";
+import Modal from "react-responsive-modal";
 
 import { Holiday } from "@/app/page";
 
@@ -9,6 +11,11 @@ type Props = {
 };
 
 const DayCard = ({ selectedDate, day, holidays }: Props) => {
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
   const today = DateTime.local().toISODate();
   const luxonDay = DateTime.fromObject({
     year: selectedDate.getFullYear(),
@@ -28,6 +35,14 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
     >
       {day}
       {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
+
+      <div>
+        <button onClick={onOpenModal}>Add Task</button>
+      </div>
+
+      <Modal open={open} onClose={onCloseModal} center>
+        <h2>Simple centered modal</h2>
+      </Modal>
     </div>
   );
 };
