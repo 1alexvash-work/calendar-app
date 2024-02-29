@@ -38,6 +38,9 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
 
   const isToday = luxonDay === today;
   const thisDayHoliday = holidays.find((holiday) => holiday.date === luxonDay);
+  const thisDayTasks = tasks.filter(
+    ({ date }) => date.toISOString().split("T")[0] === luxonDay
+  );
 
   return (
     <div
