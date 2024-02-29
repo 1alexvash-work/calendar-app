@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import useModal from "@/hooks/useModal";
 
 import { saveServer } from "./serverActions";
+import TaskBrick from "./TaskBrick";
 import { Holiday, Task } from "./types";
 
 type Props = {
@@ -51,6 +52,13 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     >
       {day}
       {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
+      {thisDayTasks.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {thisDayTasks.map((task) => (
+            <TaskBrick key={task.id} task={task} />
+          ))}
+        </div>
+      )}
 
       <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
         <button
