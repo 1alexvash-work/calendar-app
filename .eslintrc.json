@@ -4,6 +4,7 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "react/self-closing-comp": ["error", { "component": true, "html": true }]
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "no-unused-vars": "error"
   }
 }
