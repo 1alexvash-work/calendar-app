@@ -3,10 +3,10 @@ import { useState } from "react";
 import Modal from "react-responsive-modal";
 import { toast } from "react-toastify";
 
-import { Holiday } from "@/app/page";
 import useModal from "@/hooks/useModal";
 
 import { saveServer } from "./serverActions";
+import { Holiday } from "./types";
 
 type Props = {
   selectedDate: DateTime;

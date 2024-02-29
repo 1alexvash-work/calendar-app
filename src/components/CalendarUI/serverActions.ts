@@ -2,6 +2,8 @@
 
 import db from "@/helpers/db";
 
+import { Holiday } from "./types";
+
 export const getUSHolidays = async () => {
   const calendarApiUrl = "https://date.nager.at/api/v3";
 
@@ -13,7 +15,7 @@ export const getUSHolidays = async () => {
   );
   const data = await result.json();
 
-  return data;
+  return data as Holiday[];
 };
 
 export const saveServer = async (taskName: string) => {
