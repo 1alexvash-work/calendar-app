@@ -18,7 +18,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
 
   const [taskName, setTaskName] = useState("");
 
-  const save = () => {
+  const save = (event) => {
     console.log("save");
   };
 
