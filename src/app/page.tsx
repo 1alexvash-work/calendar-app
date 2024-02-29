@@ -5,15 +5,16 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 
 import CalendarUI from "@/components/CalendarUI";
-import { getUSHolidays } from "@/components/CalendarUI/serverActions";
+import { getTasks, getUSHolidays } from "@/components/CalendarUI/serverActions";
 import Counter from "@/components/Counter";
 
 const Home = async () => {
   const holidays = await getUSHolidays();
+  const tasks = await getTasks();
 
   return (
     <>
-      <CalendarUI holidays={holidays} />
+      <CalendarUI holidays={holidays} tasks={tasks} />
       <Counter />
       <ToastContainer position="bottom-left" />
     </>

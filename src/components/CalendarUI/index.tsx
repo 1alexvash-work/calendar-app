@@ -3,17 +3,17 @@
 import { DateTime } from "luxon";
 import { useState } from "react";
 
-import { Holiday } from "@/app/page";
-
 import DayCard from "./DayCard";
 import DaysOfWeek from "./DaysOfWeek";
 import MonthControls from "./MonthControls";
+import { Holiday, Task } from "./types";
 
 type Props = {
   holidays: Holiday[];
+  tasks: Task[];
 };
 
-const CalendarUI = ({ holidays }: Props) => {
+const CalendarUI = ({ holidays, tasks }: Props) => {
   const [selectedDate, setSelectedDate] = useState(DateTime.local());
 
   const offsetValue = selectedDate.startOf("month").weekday - 1;
@@ -45,6 +45,7 @@ const CalendarUI = ({ holidays }: Props) => {
             key={day}
             selectedDate={selectedDate}
             holidays={holidays}
+            tasks={tasks}
           />
         ))}
       </div>

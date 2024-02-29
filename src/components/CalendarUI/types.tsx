@@ -9,3 +9,9 @@ export type Holiday = {
   launchYear: null | number;
   types: string[];
 };
+
+export type Task = {
+  id: number;
+  title: string;
+  date: Date;
+};

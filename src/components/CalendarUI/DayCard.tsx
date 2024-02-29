@@ -6,15 +6,16 @@ import { toast } from "react-toastify";
 import useModal from "@/hooks/useModal";
 
 import { saveServer } from "./serverActions";
-import { Holiday } from "./types";
+import { Holiday, Task } from "./types";
 
 type Props = {
   selectedDate: DateTime;
   day: number;
   holidays: Holiday[];
+  tasks: Task[];
 };
 
-const DayCard = ({ selectedDate, day, holidays }: Props) => {
+const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const { isOpen, open, close } = useModal();
 
   const [taskName, setTaskName] = useState("");
