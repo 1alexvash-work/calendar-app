@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { Holiday } from "@/app/page";
 import useModal from "@/hooks/useModal";
 
+import { saveServer } from "./serverActions";
+
 type Props = {
   selectedDate: DateTime;
   day: number;
@@ -19,7 +21,9 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
 
   const isSaveButtonDisabled = taskName.trim() === "";
 
-  const save = () => {
+  const save = async () => {
+    await saveServer(taskName);
+
     toast.success("Task saved successfully");
     close();
   };
