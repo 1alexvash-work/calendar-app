@@ -14,3 +14,9 @@ model Counter {
   id    Int @id @default(autoincrement())
   count Int @default(0)
 }
+
+model Tasks {
+  id    Int      @id @default(autoincrement())
+  title String
+  date  DateTime
+}
