@@ -22,11 +22,35 @@ export const getTasks = async () => {
   return await db.tasks.findMany();
 };
 
+const randomColors = [
+  "green",
+  "blue",
+  "yellow",
+  "magenta",
+  "cyan",
+  "orange",
+  "darkgreen",
+  "navy",
+  "maroon",
+  "olive",
+  "teal",
+  "pink",
+  "gold",
+  "brown",
+  "gray",
+  "silver",
+];
+
+const getRandomColor = () => {
+  return randomColors[Math.floor(Math.random() * randomColors.length)];
+};
+
 export const saveServer = async (taskName: string) => {
   await db.tasks.create({
     data: {
       title: taskName,
       date: new Date(),
+      background: getRandomColor(),
     },
   });
 };
