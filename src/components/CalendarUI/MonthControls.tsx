@@ -1,5 +1,5 @@
 type Props = {
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  setSelectedDateLuxon: React.Dispatch<React.SetStateAction<luxon.DateTime>>;
 };
 
 const months = {
@@ -7,14 +7,10 @@ const months = {
   previous: -1,
 };
 
-const MonthControls = ({ setSelectedDate }: Props) => {
+const MonthControls = ({ setSelectedDateLuxon }: Props) => {
   const handleMonthChange = (increment: number) => {
-    setSelectedDate((prevDate: Date) => {
-      return new Date(
-        prevDate.getFullYear(),
-        prevDate.getMonth() + increment,
-        prevDate.getDate()
-      );
+    setSelectedDateLuxon((prevDate: luxon.DateTime) => {
+      return prevDate.plus({ months: increment });
     });
   };
 
