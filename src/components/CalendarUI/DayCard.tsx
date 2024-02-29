@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import { useState } from "react";
 import Modal from "react-responsive-modal";
+import { toast } from "react-toastify";
 
 import { Holiday } from "@/app/page";
 
@@ -19,7 +20,9 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
   const [taskName, setTaskName] = useState("");
 
   const save = (event) => {
+    console.log("event:", event);
     console.log("save");
+    toast("Wow so easy!");
   };
 
   const today = DateTime.local().toISODate();

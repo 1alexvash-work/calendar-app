@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "Calendar App",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type Props = {
   children: React.ReactNode;
-}>) {
+};
+
+export default function RootLayout({ children }: Readonly<Props>) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
