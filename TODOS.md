@@ -12,4 +12,4 @@
 - [x] Show worldwide holidays for each day in the calendar.
 - [x] Holiday name must be fixed at of the cell and must not participate in re-ordering.
 
-- [] Please, upload your source code Vercel/GithubPages
+- [x] Please, upload your source code [Vercel](calendar-efafofnl4-alexanders-projects-2309259b.vercel.app) / GithubPages
