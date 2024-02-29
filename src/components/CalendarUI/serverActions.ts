@@ -18,6 +18,10 @@ export const getUSHolidays = async () => {
   return data as Holiday[];
 };
 
+export const getTasks = async () => {
+  return await db.tasks.findMany();
+};
+
 export const saveServer = async (taskName: string) => {
   await db.tasks.create({
     data: {
