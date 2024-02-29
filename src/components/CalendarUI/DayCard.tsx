@@ -16,6 +16,12 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  const [taskName, setTaskName] = useState("");
+
+  const save = () => {
+    console.log("save");
+  };
+
   const today = DateTime.local().toISODate();
   const luxonDay = DateTime.fromObject({
     year: selectedDate.getFullYear(),
@@ -31,7 +37,7 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
       key={day}
       className={`p-4 shadow-md ${
         isToday ? "bg-blue-500 text-white" : ""
-      } h-40`}
+      } h-40 relative`}
     >
       {day}
       {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
@@ -41,7 +47,19 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
       </div>
 
       <Modal open={open} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
+        <h3 className="text-xl font-bold mb-4">Task name</h3>
+        <input
+          className="border border-gray-300 rounded px-4 py-2 mb-4"
+          type="text"
+          value={taskName}
+          onChange={(event) => setTaskName(event.target.value)}
+        />
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={save}
+        >
+          Save
+        </button>
       </Modal>
     </div>
   );
