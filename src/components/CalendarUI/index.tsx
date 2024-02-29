@@ -14,11 +14,10 @@ type Props = {
 };
 
 const CalendarUI = ({ holidays }: Props) => {
-  const [selectedDate] = useState(new Date());
-  const [selectedDateLuxon, setSelectedDateLuxon] = useState(DateTime.local());
+  const [selectedDate, setSelectedDate] = useState(DateTime.local());
 
-  const gap = selectedDateLuxon.startOf("month").weekday - 1;
-  const columnOffset = Array.from({ length: gap }, (_, index) => (
+  const offsetValue = selectedDate.startOf("month").weekday - 1;
+  const columnOffset = Array.from({ length: offsetValue }, (_, index) => (
     <div key={index} />
   ));
 
@@ -26,9 +25,9 @@ const CalendarUI = ({ holidays }: Props) => {
     <div className="p-4 m-4 shadow-md min-w-[960px]">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-bold mb-2">
-          {selectedDateLuxon.toFormat("MMMM yyyy")}
+          {selectedDate.toFormat("MMMM yyyy")}
         </h2>
-        <MonthControls setSelectedDateLuxon={setSelectedDateLuxon} />
+        <MonthControls setSelectedDateLuxon={setSelectedDate} />
       </div>
 
       <DaysOfWeek />
@@ -38,7 +37,7 @@ const CalendarUI = ({ holidays }: Props) => {
       <div className="grid grid-cols-7 gap-4">
         {columnOffset}
         {Array.from(
-          { length: selectedDateLuxon.daysInMonth! },
+          { length: selectedDate.daysInMonth! },
           (_, index) => index + 1
         ).map((day) => (
           <DayCard

@@ -7,7 +7,7 @@ import { Holiday } from "@/app/page";
 import useModal from "@/hooks/useModal";
 
 type Props = {
-  selectedDate: Date;
+  selectedDate: DateTime;
   day: number;
   holidays: Holiday[];
 };
@@ -26,8 +26,8 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
 
   const today = DateTime.local().toISODate();
   const luxonDay = DateTime.fromObject({
-    year: selectedDate.getFullYear(),
-    month: selectedDate.getMonth() + 1,
+    year: selectedDate.year,
+    month: selectedDate.month,
     day,
   }).toISODate();
 
