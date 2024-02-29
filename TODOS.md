@@ -9,5 +9,5 @@
 - [ ] Filter tasks by labels.
 - [ ] Import and export calendar to file (JSON or other formats).
 - [ ] Ability to download the calendar as an image.
-- [ ] Show worldwide holidays for each day in the calendar.
-- [ ] Holiday name must be fixed at of the cell and must not participate in re-ordering.
+- [x] Show worldwide holidays for each day in the calendar.
+- [x] Holiday name must be fixed at of the cell and must not participate in re-ordering.

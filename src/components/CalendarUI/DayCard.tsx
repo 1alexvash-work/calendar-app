@@ -17,15 +17,17 @@ const DayCard = ({ selectedDate, day, holidays }: Props) => {
   }).toISODate();
 
   const isToday = luxonDay === today;
-  const hasHoliday = holidays.some((holiday) => holiday.date === luxonDay);
+  const thisDayHoliday = holidays.find((holiday) => holiday.date === luxonDay);
 
   return (
     <div
       key={day}
-      className={`p-4 shadow-md ${isToday ? "bg-blue-500 text-white" : ""}`}
+      className={`p-4 shadow-md ${
+        isToday ? "bg-blue-500 text-white" : ""
+      } h-40`}
     >
       {day}
-      {hasHoliday && <span> - Holiday!</span>}
+      {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
     </div>
   );
 };
