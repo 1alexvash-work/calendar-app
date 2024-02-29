@@ -20,13 +20,8 @@ type Props = {
 
 const CalendarUI = ({ holidays }: Props) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const currentMonth = selectedDate.toLocaleString("en-US", {
-    month: "long",
-  });
-  const currentYear = selectedDate.getFullYear();
-
   const selectedDateLuxon = DateTime.fromJSDate(selectedDate);
+
   const gap = selectedDateLuxon.startOf("month").weekday - 1;
   const columnOffset = Array.from({ length: gap }, (_, index) => (
     <div key={index} />
@@ -40,7 +35,9 @@ const CalendarUI = ({ holidays }: Props) => {
   return (
     <div className="p-4 m-4 shadow-md min-w-[960px]">
       <div className="flex justify-between mb-4">
-        <h2 className="text-xl font-bold mb-2">{`${currentMonth} ${currentYear}`}</h2>
+        <h2 className="text-xl font-bold mb-2">
+          {selectedDateLuxon.toFormat("MMMM yyyy")}
+        </h2>
         <MonthControls setSelectedDate={setSelectedDate} />
       </div>
 
