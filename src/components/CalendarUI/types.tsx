@@ -14,4 +14,5 @@ export type Task = {
   id: number;
   title: string;
   date: Date;
+  background: string;
 };

@@ -12,7 +12,7 @@ const CrossIcon = ({ onClick }: { onClick: () => void }) => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    stroke="currentColor"
+    stroke="red"
     onClick={onClick}
   >
     <path
@@ -27,9 +27,13 @@ const CrossIcon = ({ onClick }: { onClick: () => void }) => (
 const TaskBrick = ({ task }: Props) => {
   return (
     <span
-      className="bg-yellow-500 rounded inline-block"
+      className="rounded inline-block"
       title={task.title}
-      style={{ height: "20px", width: "50px" }}
+      style={{
+        height: "20px",
+        width: "50px",
+        backgroundColor: task.background,
+      }}
     >
       <div className="flex justify-end">
         <CrossIcon onClick={() => alert("Deletion")} />
