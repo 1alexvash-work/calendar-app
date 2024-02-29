@@ -5,21 +5,8 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 
 import CalendarUI from "@/components/CalendarUI";
+import { getUSHolidays } from "@/components/CalendarUI/serverActions";
 import Counter from "@/components/Counter";
-
-const getUSHolidays = async () => {
-  const calendarApiUrl = "https://date.nager.at/api/v3";
-
-  const currentYear = new Date().getFullYear();
-  const country = "US";
-
-  const result = await fetch(
-    `${calendarApiUrl}/PublicHolidays/${currentYear}/${country}`
-  );
-  const data = await result.json();
-
-  return data;
-};
 
 export type Holiday = {
   date: string;
