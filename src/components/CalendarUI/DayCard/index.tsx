@@ -28,8 +28,11 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const save = async () => {
     await saveServer(taskName);
 
+    setTaskName("");
+
     toast.success("Task saved successfully");
     close();
+
     router.refresh();
   };
 
