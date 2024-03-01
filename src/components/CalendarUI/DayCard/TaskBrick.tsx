@@ -1,5 +1,8 @@
+import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "react-toastify";
 
+import { removeTask } from "../serverActions";
 import { Task } from "../types";
 
 type Props = {
@@ -25,6 +28,14 @@ const CrossIcon = ({ onClick }: { onClick: () => void }) => (
 );
 
 const TaskBrick = ({ task }: Props) => {
+  const router = useRouter();
+
+  const handleRemoveTask = () => {
+    removeTask(task.id);
+    toast.success("Task removed successfully");
+    router.refresh();
+  };
+
   return (
     <span
       className="rounded inline-block"
@@ -36,7 +47,7 @@ const TaskBrick = ({ task }: Props) => {
       }}
     >
       <div className="flex justify-end">
-        <CrossIcon onClick={() => alert("Deletion")} />
+        <CrossIcon onClick={handleRemoveTask} />
       </div>
     </span>
   );

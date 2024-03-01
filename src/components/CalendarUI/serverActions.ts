@@ -45,17 +45,25 @@ const getRandomColor = () => {
   return randomColors[Math.floor(Math.random() * randomColors.length)];
 };
 
-type SaveServer = {
+type AddTask = {
   title: string;
   date: Date;
 };
 
-export const saveServer = async ({ title, date }: SaveServer) => {
+export const addTask = async ({ title, date }: AddTask) => {
   await db.tasks.create({
     data: {
       title,
       date,
       background: getRandomColor(),
+    },
+  });
+};
+
+export const removeTask = async (id: number) => {
+  await db.tasks.delete({
+    where: {
+      id,
     },
   });
 };

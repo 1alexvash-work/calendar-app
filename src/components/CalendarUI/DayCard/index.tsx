@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import useModal from "@/hooks/useModal";
 
-import { saveServer } from "../serverActions";
+import { addTask } from "../serverActions";
 import { Holiday, Task } from "../types";
 import TaskBrick from "./TaskBrick";
 
@@ -26,7 +26,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const isSaveButtonDisabled = taskName.trim() === "";
 
   const save = async () => {
-    await saveServer({
+    await addTask({
       title: taskName,
       date: DateTime.fromObject({
         year: selectedDate.year,
