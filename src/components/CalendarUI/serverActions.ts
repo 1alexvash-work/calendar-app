@@ -45,11 +45,16 @@ const getRandomColor = () => {
   return randomColors[Math.floor(Math.random() * randomColors.length)];
 };
 
-export const saveServer = async (taskName: string) => {
+type SaveServer = {
+  title: string;
+  date: Date;
+};
+
+export const saveServer = async ({ title, date }: SaveServer) => {
   await db.tasks.create({
     data: {
-      title: taskName,
-      date: new Date(),
+      title,
+      date,
       background: getRandomColor(),
     },
   });

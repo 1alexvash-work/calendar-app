@@ -26,7 +26,14 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const isSaveButtonDisabled = taskName.trim() === "";
 
   const save = async () => {
-    await saveServer(taskName);
+    await saveServer({
+      title: taskName,
+      date: DateTime.fromObject({
+        year: selectedDate.year,
+        month: selectedDate.month,
+        day,
+      }).toJSDate(),
+    });
 
     setTaskName("");
 
