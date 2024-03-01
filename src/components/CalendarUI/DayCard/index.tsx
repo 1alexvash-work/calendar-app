@@ -86,7 +86,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
         </button>
       </div>
 
-      <Modal open={isOpen} onClose={open} center>
+      <Modal open={isOpen} onClose={close} center>
         <h3 className="text-xl font-bold mb-4">Task name</h3>
         <input
           className="border border-gray-300 rounded px-4 py-2 mb-4"
