@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 
 import CalendarUI from "@/components/CalendarUI";
 import { getTasks, getUSHolidays } from "@/components/CalendarUI/serverActions";
-import Counter from "@/components/Counter";
 
 const Home = async () => {
   const holidays = await getUSHolidays();
@@ -15,7 +14,6 @@ const Home = async () => {
   return (
     <>
       <CalendarUI holidays={holidays} tasks={tasks} />
-      <Counter />
       <ToastContainer position="bottom-left" />
     </>
   );

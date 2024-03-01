@@ -27,7 +27,7 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
         <h2 className="text-xl font-bold mb-2">
           {selectedDate.toFormat("MMMM yyyy")}
         </h2>
-        <MonthControls setSelectedDateLuxon={setSelectedDate} />
+        <MonthControls setSelectedDate={setSelectedDate} />
       </div>
 
       <DaysOfWeek />
