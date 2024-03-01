@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 
 import useModal from "@/hooks/useModal";
 
-import { saveServer } from "./serverActions";
+import { saveServer } from "../serverActions";
+import { Holiday, Task } from "../types";
 import TaskBrick from "./TaskBrick";
-import { Holiday, Task } from "./types";
 
 type Props = {
   selectedDate: DateTime;
