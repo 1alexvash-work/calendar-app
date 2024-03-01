@@ -32,6 +32,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
         year: selectedDate.year,
         month: selectedDate.month,
         day,
+        hour: 1,
       }).toJSDate(),
     });
 
