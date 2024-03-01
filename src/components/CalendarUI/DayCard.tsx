@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Modal from "react-responsive-modal";
 import { toast } from "react-toastify";
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
+  const router = useRouter();
   const { isOpen, open, close } = useModal();
 
   const [taskName, setTaskName] = useState("");
@@ -28,6 +30,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
 
     toast.success("Task saved successfully");
     close();
+    router.refresh();
   };
 
   const today = DateTime.local().toISODate();
