@@ -6,7 +6,6 @@ import { useState } from "react";
 import DayCard from "./DayCard";
 import DaysOfWeek from "./DaysOfWeek";
 import MonthControls from "./MonthControls";
-import { downloadJSON } from "./serverActions";
 import { Holiday, Task } from "./types";
 
 type Props = {
@@ -21,6 +20,10 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
   const columnOffset = Array.from({ length: offsetValue }, (_, index) => (
     <div key={index} />
   ));
+
+  const exportToJSON = () => {
+    window.open("/json", "_blank");
+  };
 
   return (
     <div className="p-4 m-4 shadow-md min-w-[960px]">
@@ -51,7 +54,12 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
         ))}
       </div>
 
-      <button onClick={downloadJSON}>Download JSON</button>
+      <button
+        className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={exportToJSON}
+      >
+        Export to JSON
+      </button>
     </div>
   );
 };

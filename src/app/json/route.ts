@@ -1,9 +1,7 @@
+import { getTasks } from "@/components/CalendarUI/serverActions";
+
 export async function GET() {
-  const res = await fetch("https://api.slingacademy.com", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await res.json();
+  const data = await getTasks();
+
   return Response.json({ data });
 }
