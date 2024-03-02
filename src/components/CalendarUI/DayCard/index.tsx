@@ -39,13 +39,6 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     ({ date }) => date.toISOString().split("T")[0] === luxonDay
   );
 
-  const currentDayInfo = (
-    <>
-      📅 {day}
-      {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
-    </>
-  );
-
   const [bricksPlaceholder, setBricksPlaceholder] = useState(
     thisDayTasks.map((task) => task.id)
   );
@@ -73,67 +66,82 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     router.refresh();
   };
 
+  const currentDayInfo = (
+    <>
+      📅 {day}
+      {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
+    </>
+  );
+
+  const tasksUI = (
+    <Reorder.Group
+      axis="y"
+      values={bricksPlaceholder}
+      onReorder={setBricksPlaceholder}
+      className="flex flex-col gap-1"
+    >
+      {bricksPlaceholder.map((taskId) => {
+        const task = thisDayTasks.find((task) => task.id === taskId);
+
+        if (!task) {
+          return null;
+        }
+
+        return (
+          <Reorder.Item key={taskId} value={taskId}>
+            <TaskBrick task={task} />
+          </Reorder.Item>
+        );
+      })}
+    </Reorder.Group>
+  );
+
+  const addTaskButton = (
+    <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
+      <button
+        className={`${
+          isToday ? "bg-red-500" : "bg-blue-500 text-white"
+        } text-white px-2 py-1 rounded`}
+        onClick={open}
+        title="Add Task"
+      >
+        +
+      </button>
+    </div>
+  );
+
+  const modalContent = (
+    <Modal open={isOpen} onClose={close} center>
+      <h3 className="text-xl font-bold mb-4">Task name</h3>
+      <input
+        className="border border-gray-300 rounded px-4 py-2 mb-4"
+        type="text"
+        value={taskName}
+        onChange={(event) => setTaskName(event.target.value)}
+      />
+      <button
+        className={`bg-blue-500 text-white px-4 py-2 rounded ${
+          isSaveButtonDisabled ? "cursor-not-allowed bg-gray-400" : ""
+        }`}
+        onClick={save}
+        disabled={isSaveButtonDisabled}
+      >
+        Save
+      </button>
+    </Modal>
+  );
+
   return (
     <div
       key={day}
       className={`p-4 shadow-md ${
         isToday ? "bg-blue-500 text-white" : ""
-      } h-40 relative`}
-      style={{ overflowY: "auto" }}
+      } h-40 relative overflow-y-auto`}
     >
       {currentDayInfo}
-
-      <Reorder.Group
-        axis="y"
-        values={bricksPlaceholder}
-        onReorder={setBricksPlaceholder}
-        className="flex flex-col gap-1"
-      >
-        {bricksPlaceholder.map((taskId) => {
-          const task = thisDayTasks.find((task) => task.id === taskId);
-
-          if (!task) {
-            return null;
-          }
-
-          return (
-            <Reorder.Item key={taskId} value={taskId}>
-              <TaskBrick task={task} />
-            </Reorder.Item>
-          );
-        })}
-      </Reorder.Group>
-
-      <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
-        <button
-          className={`${
-            isToday ? "bg-red-500" : "bg-blue-500 text-white"
-          } text-white px-2 py-1 rounded`}
-          onClick={open}
-          title="Add Task"
-        >
-          +
-        </button>
-      </div>
-
-      <Modal open={isOpen} onClose={close} center>
-        <h3 className="text-xl font-bold mb-4">Task name</h3>
-        <input
-          className="border border-gray-300 rounded px-4 py-2 mb-4"
-          type="text"
-          value={taskName}
-          onChange={(event) => setTaskName(event.target.value)}
-        />
-        <button
-          className={`bg-blue-500 text-white px-4 py-2 rounded ${
-            isSaveButtonDisabled ? "cursor-not-allowed bg-gray-400" : ""
-          }`}
-          onClick={save}
-          disabled={isSaveButtonDisabled}
-        >
-          Save
-        </button>
-      </Modal>
+      {tasksUI}
+      {addTaskButton}
+      {modalContent}
     </div>
   );
 };
