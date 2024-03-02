@@ -6,6 +6,7 @@ import { useState } from "react";
 import DayCard from "./DayCard";
 import DaysOfWeek from "./DaysOfWeek";
 import MonthControls from "./MonthControls";
+import { downloadJSON } from "./serverActions";
 import { Holiday, Task } from "./types";
 
 type Props = {
@@ -49,6 +50,8 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
           />
         ))}
       </div>
+
+      <button onClick={downloadJSON}>Download JSON</button>
     </div>
   );
 };
