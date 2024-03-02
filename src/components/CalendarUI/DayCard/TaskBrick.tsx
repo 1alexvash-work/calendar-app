@@ -46,7 +46,15 @@ const TaskBrick = ({ task }: Props) => {
       }}
     >
       <div className="flex justify-between">
-        {task.title}
+        <span
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {task.title}
+        </span>
         <CrossIcon onClick={handleRemoveTask} />
       </div>
     </div>
