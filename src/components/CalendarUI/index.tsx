@@ -62,8 +62,8 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
         (_, index) => index + 1
       ).map((day) => (
         <DayCard
-          day={day}
           key={day}
+          day={day}
           selectedDate={selectedDate}
           holidays={holidays}
           tasks={tasks}

@@ -50,7 +50,7 @@ type AddTask = {
 };
 
 export const addTask = async ({ title, date }: AddTask) => {
-  await db.tasks.create({
+  return await db.tasks.create({
     data: {
       title,
       date,

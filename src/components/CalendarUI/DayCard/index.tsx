@@ -53,7 +53,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const save = async () => {
     const ukraineTimeZoneHourCorrection = 3;
 
-    await addTask({
+    const task = await addTask({
       title: taskName,
       date: DateTime.fromObject({
         year: selectedDate.year,
@@ -67,6 +67,8 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
 
     toast.success("Task saved successfully");
     close();
+
+    setBricksPlaceholder([...bricksPlaceholder, task.id]);
 
     router.refresh();
   };

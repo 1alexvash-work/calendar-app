@@ -14,5 +14,6 @@ yarn dev
 
 - Next for the frontend and React environment
 - Next 14 backend with serverless actions
-- Prisma for the data storage
+- `Prisma` for the data storage with `SQLite` database
 - `framer-motion` for task's reordering
+- `Tailwind` for styling
