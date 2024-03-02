@@ -26,13 +26,15 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const isSaveButtonDisabled = taskName.trim() === "";
 
   const save = async () => {
+    const ukraineTimeZoneHourCorrection = 3;
+
     await addTask({
       title: taskName,
       date: DateTime.fromObject({
         year: selectedDate.year,
         month: selectedDate.month,
         day,
-        hour: 1,
+        hour: ukraineTimeZoneHourCorrection,
       }).toJSDate(),
     });
 

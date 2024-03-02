@@ -7,7 +7,7 @@
 - [ ] Create and edit labels for tasks (color, text).
 - [ ] Assign multiple labels to the task.
 - [ ] Filter tasks by labels.
-- [x] Import and export calendar to file (JSON or other formats).
+- [x] Import and export calendar to file (JSON or other formats). => (Implemented exporting, not importing)
 - [ ] Ability to download the calendar as an image.
 - [x] Show worldwide holidays for each day in the calendar.
 - [x] Holiday name must be fixed at of the cell and must not participate in re-ordering.
