@@ -60,6 +60,13 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     ({ date }) => date.toISOString().split("T")[0] === luxonDay
   );
 
+  const currentDayInfo = (
+    <>
+      {day}
+      {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
+    </>
+  );
+
   const [items, setItems] = useState([0, 1, 2, 3]);
 
   return (
@@ -69,8 +76,8 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
         isToday ? "bg-blue-500 text-white" : ""
       } h-40 relative`}
     >
-      {day}
-      {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
+      {currentDayInfo}
+
       {thisDayTasks.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {thisDayTasks.map((task) => (
@@ -78,7 +85,6 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
           ))}
         </div>
       )}
-
       <Reorder.Group axis="y" values={items} onReorder={setItems}>
         {items.map((item) => (
           <Reorder.Item key={item} value={item}>
@@ -86,7 +92,6 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
           </Reorder.Item>
         ))}
       </Reorder.Group>
-
       <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
         <button
           className={`${
@@ -98,7 +103,6 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
           +
         </button>
       </div>
-
       <Modal open={isOpen} onClose={close} center>
         <h3 className="text-xl font-bold mb-4">Task name</h3>
         <input
