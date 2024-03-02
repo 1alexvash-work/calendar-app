@@ -37,19 +37,19 @@ const TaskBrick = ({ task }: Props) => {
   };
 
   return (
-    <span
-      className="rounded inline-block"
+    <div
+      className="rounded text-sm"
       title={task.title}
       style={{
         height: "20px",
-        width: "50px",
         backgroundColor: task.background,
       }}
     >
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        {task.title}
         <CrossIcon onClick={handleRemoveTask} />
       </div>
-    </span>
+    </div>
   );
 };
 
