@@ -46,7 +46,9 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     </>
   );
 
-  const [items, setItems] = useState([0, 1, 2, 3]);
+  const [bricksPlaceholder, setBricksPlaceholder] = useState(
+    thisDayTasks.map((task) => task.id)
+  );
 
   const save = async () => {
     const ukraineTimeZoneHourCorrection = 3;
@@ -78,20 +80,20 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     >
       {currentDayInfo}
 
-      {thisDayTasks.length > 0 && (
-        <div className="flex flex-col gap-1">
-          {thisDayTasks.map((task) => (
-            <TaskBrick key={task.id} task={task} />
-          ))}
-        </div>
-      )}
+      <Reorder.Group
+        axis="y"
+        values={bricksPlaceholder}
+        onReorder={setBricksPlaceholder}
+      >
+        {bricksPlaceholder.map((taskId) => {
+          const task = thisDayTasks.find((task) => task.id === taskId)!;
 
-      <Reorder.Group axis="y" values={items} onReorder={setItems}>
-        {items.map((item) => (
-          <Reorder.Item key={item} value={item}>
-            {item}
-          </Reorder.Item>
-        ))}
+          return (
+            <Reorder.Item key={taskId} value={taskId}>
+              <TaskBrick task={task} />
+            </Reorder.Item>
+          );
+        })}
       </Reorder.Group>
 
       <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
