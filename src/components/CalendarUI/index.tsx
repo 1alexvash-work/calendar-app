@@ -1,5 +1,6 @@
 "use client";
 
+import { toJpeg } from "html-to-image";
 import { DateTime } from "luxon";
 import { useState } from "react";
 
@@ -11,10 +12,9 @@ import { Holiday, Task } from "./types";
 type Props = {
   holidays: Holiday[];
   tasks: Task[];
-  environment: string | undefined;
 };
 
-const CalendarUI = ({ holidays, tasks, environment }: Props) => {
+const CalendarUI = ({ holidays, tasks }: Props) => {
   const [selectedDate, setSelectedDate] = useState(DateTime.local());
 
   const offsetValue = selectedDate.startOf("month").weekday - 1;
@@ -30,8 +30,23 @@ const CalendarUI = ({ holidays, tasks, environment }: Props) => {
     window.print();
   };
 
+  const exportToImage = () => {
+    const calendar = document.getElementById("calendar");
+
+    if (!calendar) {
+      return;
+    }
+
+    toJpeg(calendar, { backgroundColor: "white" }).then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = "calendar.jpg";
+      link.href = dataUrl;
+      link.click();
+    });
+  };
+
   return (
-    <div className="p-4 m-4 shadow-md min-w-[960px]">
+    <div className="p-4 m-4 shadow-md min-w-[960px" id="calendar">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-bold mb-2">
           {selectedDate.toFormat("MMMM yyyy")}
@@ -59,21 +74,28 @@ const CalendarUI = ({ holidays, tasks, environment }: Props) => {
         ))}
       </div>
 
-      <button
-        className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4"
-        onClick={exportToJSON}
-      >
-        Export to JSON
-      </button>
+      <div className="flex gap-2">
+        <button
+          className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4"
+          onClick={exportToJSON}
+        >
+          Export to JSON
+        </button>
 
-      <div>Environment is {environment}</div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          onClick={exportToPDF}
+        >
+          Export to PDF
+        </button>
 
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-        onClick={exportToPDF}
-      >
-        Export to PDF
-      </button>
+        <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
+          onClick={exportToImage}
+        >
+          Export an image
+        </button>
+      </div>
     </div>
   );
 };

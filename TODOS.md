@@ -16,4 +16,4 @@
 - [x] Show worldwide holidays for each day in the calendar.
 - [x] Holiday name must be fixed at of the cell and must not participate in re-ordering.
 - [x] Please, upload your source code [Vercel](calendar-efafofnl4-alexanders-projects-2309259b.vercel.app) / GithubPages
-- [ ] Ability to download the calendar as an image.
+- [x] Ability to download the calendar as an image.

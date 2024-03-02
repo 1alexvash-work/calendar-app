@@ -13,11 +13,7 @@ const Home = async () => {
 
   return (
     <>
-      <CalendarUI
-        holidays={holidays}
-        tasks={tasks}
-        environment={process.env.environment}
-      />
+      <CalendarUI holidays={holidays} tasks={tasks} />
       <ToastContainer position="bottom-left" />
     </>
   );
