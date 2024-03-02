@@ -32,7 +32,7 @@ const TaskBrick = ({ task }: Props) => {
 
   const handleRemoveTask = () => {
     removeTask(task.id);
-    toast.success("Task removed successfully");
+    toast.success("🗑 Task removed successfully");
     router.refresh();
   };
 

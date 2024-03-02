@@ -41,7 +41,7 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
 
   const currentDayInfo = (
     <>
-      {day}
+      📅 {day}
       {thisDayHoliday && <span> - {thisDayHoliday.localName}</span>}
     </>
   );
