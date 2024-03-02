@@ -26,6 +26,10 @@ const CalendarUI = ({ holidays, tasks, environment }: Props) => {
     window.open("/json", "_blank");
   };
 
+  const exportToPDF = () => {
+    window.print();
+  };
+
   return (
     <div className="p-4 m-4 shadow-md min-w-[960px]">
       <div className="flex justify-between mb-4">
@@ -63,6 +67,13 @@ const CalendarUI = ({ holidays, tasks, environment }: Props) => {
       </button>
 
       <div>Environment is {environment}</div>
+
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={exportToPDF}
+      >
+        Export to PDF
+      </button>
     </div>
   );
 };
