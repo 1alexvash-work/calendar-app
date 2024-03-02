@@ -49,7 +49,6 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
   const [bricksPlaceholder, setBricksPlaceholder] = useState(
     thisDayTasks.map((task) => task.id)
   );
-  console.log("bricksPlaceholder:", bricksPlaceholder);
 
   const save = async () => {
     const ukraineTimeZoneHourCorrection = 3;

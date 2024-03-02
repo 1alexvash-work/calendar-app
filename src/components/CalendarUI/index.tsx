@@ -11,9 +11,10 @@ import { Holiday, Task } from "./types";
 type Props = {
   holidays: Holiday[];
   tasks: Task[];
+  environment: string | undefined;
 };
 
-const CalendarUI = ({ holidays, tasks }: Props) => {
+const CalendarUI = ({ holidays, tasks, environment }: Props) => {
   const [selectedDate, setSelectedDate] = useState(DateTime.local());
 
   const offsetValue = selectedDate.startOf("month").weekday - 1;
@@ -60,6 +61,8 @@ const CalendarUI = ({ holidays, tasks }: Props) => {
       >
         Export to JSON
       </button>
+
+      <div>Environment is {environment}</div>
     </div>
   );
 };
