@@ -1,3 +1,4 @@
+import { Reorder } from "framer-motion";
 import { DateTime } from "luxon";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -59,6 +60,8 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
     ({ date }) => date.toISOString().split("T")[0] === luxonDay
   );
 
+  const [items, setItems] = useState([0, 1, 2, 3]);
+
   return (
     <div
       key={day}
@@ -75,6 +78,14 @@ const DayCard = ({ selectedDate, day, holidays, tasks }: Props) => {
           ))}
         </div>
       )}
+
+      <Reorder.Group axis="y" values={items} onReorder={setItems}>
+        {items.map((item) => (
+          <Reorder.Item key={item} value={item}>
+            {item}
+          </Reorder.Item>
+        ))}
+      </Reorder.Group>
 
       <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
         <button
