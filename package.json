@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:update": "npx prisma generate && npx prisma migrate dev --name init",
     "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
