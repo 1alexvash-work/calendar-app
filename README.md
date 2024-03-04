@@ -1,3 +1,7 @@
+## Vercel preview
+
+https://calendar-app-five-sigma.vercel.app/
+
 ## Install the project
 
 ```bash
