@@ -19,4 +19,6 @@ const Home = async () => {
   );
 };
 
+export const revalidate = 0;
+
 export default Home;
