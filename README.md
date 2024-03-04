@@ -4,6 +4,16 @@
 yarn
 ```
 
+## Set up the database
+
+For that configure the `.env` file with the `DATABASE_URL` key
+
+## Set up the Prisma
+
+```bash
+yarn prisma:update
+```
+
 ## Run the project
 
 ```bash
