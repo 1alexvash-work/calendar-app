@@ -24,7 +24,6 @@ export const getTasks = async () => {
 
 const randomColors = [
   "green",
-  "blue",
   "magenta",
   "cyan",
   "orange",

@@ -2,6 +2,10 @@
 
 https://calendar-app-five-sigma.vercel.app/
 
+## App preview
+
+![Image](https://i.imgur.com/RgfaskD.gif)
+
 ## Install the project
 
 ```bash
@@ -31,3 +35,4 @@ yarn dev
 - `Prisma` for the data storage with `SQLite` database
 - `framer-motion` for task's reordering
 - `Tailwind` for styling
+- `luxon` for date management
